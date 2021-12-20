@@ -1,27 +1,257 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main() {
-    char file_name[40];
+    //Declaração de variáveis:
+    int s;
+    char file_name[50];
+    char write_file[1000];
+    char option[1];
     char ch;
+    //Apontador para abertura do ficheiro
     FILE *fp;
+    FILE *fpW;
 
-    printf("Please, enter the complete path of the file you wish to be read by the program\n");
-    gets(file_name);
+    printf("Welcome to IAPG Final Project Program\nThis program allows you to do some statistic's operations");
 
-    fp = fopen (file_name, "r");
+    choises: printf("Please, select one of the following options:\nOpen a file (1)\nEnter the data in the terminal (2)\n");
+    scanf ("%d", &s);
 
-    if(fp == NULL) {
-        printf("Error while opening the file.\n");
-        exit(1);
+
+    switch (s) {
+
+        case 1:
+
+        printf("Please, enter the complete path of the file you wish to be read by the program\n");
+        fgets (file_name, 40, stdin);
+        char c = file_name;
+        //char deststring;
+
+        //Remover buffer do teclado causado pelo "enter" pressionado logo após a submissão do caminho do arquivo
+        while ((c = getchar()) != '\n' && c!= EOF) { }
+
+        fp = fopen (file_name, "r");
+
+        if(fp == NULL) {
+            perror("Error while opening the file.\n");
+            exit(1);
+        }
+
+        printf("The contents of %s file are:\n", file_name);
+
+                while ((ch = fgetc(fp)) != EOF)
+                    printf("%c", ch);
+
+                fclose(fp);
+
+            break;
+
+        case 2:
+            printf("Please, enter the data");
+            /*fgets (write_file, 1000, stdin);
+
+            fprintf(fpW, write_file);
+            fclose(fpW);*/
+
+        break;
+
+        default:
+            printf("Please, enter a valid option\n");
+            goto choises;
+
     }
 
-    printf("The contents of %s file are:\n", file_name);
 
-    while((ch = fgetc(fp)) != EOF)
-        printf("%c", ch);
 
-    fclose(fp);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     return 0;
 }
