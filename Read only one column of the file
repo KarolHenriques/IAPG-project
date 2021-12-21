@@ -1,0 +1,51 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#define FIRST_LINE 1
+
+
+int main() {
+    char buf[1024 - 1];
+    int line_count = 0;
+    FILE *file = fopen("/home/karol/Downloads/ExampleCSV.csv", "r");
+
+    if (!file) {
+        fprintf(stderr, "Can't open file.\n");
+        exit(EXIT_FAILURE);
+    }
+
+    //Number of lines:
+
+    char line [200];
+    int line_Number;
+    if (file != NULL){
+        while (!feof(file)){
+            fgets (line, 200, file);
+            line_Number++;
+        }
+        printf("The last line is: %s \n", line);
+        printf("The number of lines is %d ", line_Number);
+    }
+
+    while (fgets(buf, sizeof buf, file) != NULL)
+        if (++line_count >= FIRST_LINE - 1)
+            break;
+
+
+    while (fgets(buf, sizeof buf, file) != NULL) {
+        double value;
+
+        // read value in third column (asterisk means ignore value)
+        if (sscanf(buf, "%*lf;%*lf;%lf", &value) != 1) {
+            fprintf(stderr, "sscanf failed.\n");
+            exit(EXIT_FAILURE);
+        }
+
+        printf("%f\n", value);
+        if (++line_count >= 1000)
+            break;
+    }
+
+    fclose(file);
+    return 0;
+}
