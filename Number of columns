@@ -1,0 +1,25 @@
+int main() {
+    FILE *fp;
+    fp = fopen("FILENAME", "r");
+    char first_line[540];
+    int column_Number = 0;
+    int line_Number = 0;
+    char ch;
+    
+    ch = fp;
+    
+    //read character by character and check for new line
+    while((ch=fgetc(fp))!=EOF) {
+        if(ch==';'){
+            column_Number++;
+            line_Number++;
+        }
+            if (ch == '\n')
+                break;
+    }
+
+    printf("Number of columns: %d \n", column_Number + 1); //Plus one because the number of ; is -1 number of columns 
+    fclose(fp);
+    return (0);
+
+}
