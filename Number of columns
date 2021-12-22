@@ -6,8 +6,6 @@ int main() {
     int line_Number = 0;
     char ch;
     
-    ch = fp;
-    
     //read character by character and check for new line
     while((ch=fgetc(fp))!=EOF) {
         if(ch==';'){
