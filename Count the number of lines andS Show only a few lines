@@ -1,0 +1,45 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+//Count the number of lines:
+
+/*int main (){
+    FILE *fp;
+    fp = fopen("FILEPATH "r");
+    char line [200]; //the elements of one line of the table!!!
+    int line_Number = 0;
+
+    if (fp != NULL){
+        while (!feof(fp)){
+            fgets (line, 200, fp);
+            line_Number++;
+            printf("Content of the line (%d): %s \n", line_Number, line);
+        }
+        printf("\nThe last line is: %s \n", line);
+        printf("\nThe number of lines is: %d\n", line_Number);
+    }
+    fclose(fp);
+}
+*/
+//See only N lines:
+
+int main(){
+    FILE *fp;
+    fp = fopen("FILEPATH", "r");
+    char line [200]; //the elements of one line of the table!!!
+    int line_Number = 0;
+    FILE *fpF2;
+    int n = 7;
+
+    while (!feof (fp)){
+        fgets (line, 200, fp);
+        line_Number++;
+        printf("Content of the line (%d): %s \n", line_Number, line);
+
+        if (line_Number >= n)
+            break;
+    }
+    fclose(fp);
+}
+
