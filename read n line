@@ -1,0 +1,24 @@
+//O código abaixo pergunta ao utilizador que linha quer ler do ficheiro csv e a mesma é apresentada no ecrã
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+    int x=0;
+    printf("Which line do you want read?\n");
+    scanf("%d", &x);
+    FILE* file = fopen("FILEPATH", "r");
+    char line[256];
+    int i =0;
+    while (fgets(line, sizeof(line), file)) {
+        i++;
+        if(i == x )
+        {
+            printf("%s", line);
+        }
+    }
+
+    fclose(file);
+
+    return 0;
+}
