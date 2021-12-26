@@ -5,14 +5,14 @@
 
 int main() {
     int x=0;
-    printf("Which line do you want read?\n");
+    printf("Which lines do you want read?\n");
     scanf("%d", &x);
     FILE* file = fopen("FILEPATH", "r");
     char line[256];
     int i =0;
     while (fgets(line, sizeof(line), file)) {
         i++;
-        if(i == x )
+        if(i <= x )
         {
             printf("%s", line);
         }
