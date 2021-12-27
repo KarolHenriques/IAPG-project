@@ -108,17 +108,18 @@ int main(){
 
     //Determinate the size of the array age
 
-    size_t n = sizeof people->age;
-    printf("Total elements the array can hold would it be: %d?\n", n);
+    int size = people[39].age;
+
+    //printf("%d ", size);
 
 
     //Sum all the elements inside the age array
-int j;
+    int j;
     int sum;
-    for (j = 0; j < 40; ++j){
+    for (j = 0; j < count; ++j){
+        //The number of elements inside the array will be equal the number of lines - the title of the table
 
-
-        sum += people[j].age;
+        sum += people[j].a1;
     }
     printf("Would it be: %d?", sum);
 
