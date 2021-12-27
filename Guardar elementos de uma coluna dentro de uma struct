@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 const int LINE_SIZE = 1024;
 
@@ -26,7 +27,7 @@ char* getfield(char* line, int num)
 }
 
 int main(){
-    FILE* file = fopen("FILEPATH", "r");
+    FILE* file = fopen("/home/karol/Downloads/ExampleCSV.csv", "r");
     char line[LINE_SIZE];
 
     Person* people;
@@ -106,14 +107,7 @@ int main(){
                people[i].weight, people[i].a1, people[i].a5);
     }
 
-    //Determinate the size of the array age
-
-    int size = people[39].age;
-
-    //printf("%d ", size);
-
-
-    //Sum all the elements inside the age array
+    //Sum all the elements inside the a1 array
     int j;
     int sum;
     for (j = 0; j < count; ++j){
@@ -121,10 +115,31 @@ int main(){
 
         sum += people[j].a1;
     }
-    printf("Would it be: %d?", sum);
+    printf("\nThe sum of the elements inside the array a1 would it be: %d?\n", sum);
+
+    //Do the arithmetic mean of the elements from the array a1
+
+    float me;
+
+    me = (float) sum/(float) count;
+
+    printf("\nThe arithmetic mean would it be: %f?\n",me);
+
+
+    //Variance
+int sum1;
+float variance;
+    for (int p = 0; p < count; p++)
+    {
+        sum1 = sum1 + pow(((people[p].a1) - me), 2);
+    }
+variance = sum1 / (float) count;
+    printf("\nVariance would it be: %.2f\n", variance);
+
 
     fclose(file);
     //free(people);
 
     return 0;
 }
+
