@@ -123,7 +123,7 @@ int main(){
 
     me = (float) sum/ count;
 
-    printf("\nThe arithmetic mean would be: %f?\n",me);
+    printf("\nThe arithmetic average would be: %f?\n",me);
 
     //
 
@@ -138,8 +138,8 @@ int main(){
            position = loop;
        }
    }
-   printf("\nThe largest elements in the array a1 is: %d", largest);
-   printf("\nIndex position of the Largest element = %d \n", position);
+   printf("\nThe greater elements in the array a1 is: %d", largest);
+   printf("\nIndex position of the greater element = %d \n", position);
     //printf("The largest element is: %f ", people[33].a1 );
 
 
@@ -155,30 +155,33 @@ int main(){
             position1 = loo;
         }
     }
-    printf("\nThe lowest elements in the array a1 is: %d", lowest);
-    printf("\nIndex position of the lowest element = %d", position1);
+    printf("\nThe lowest elements in the array a1 is: %d\n", lowest);
+    printf("\nIndex position of the lowest element = %d\n", position1);
 
 
     //Variance
-    /*int sum1;
-    float variance;
-      for (int p = 0; p < count; p++)
-      {
-          sum1 = sum1 + pow(((people[p].a1) - me), 2);
-      }
-    variance = sum1 / (float) count;
-      printf("\nVariance would it be: %.2f\n", variance);
-
-       //Median
-    float median;
-       if (count%2 == 0){
-          median = (people[(count/2)-1].a1+people[(count/2)]).a1/2.0;
+     int sum1 = 0;
+     float variance = 0;
+       for (int p = 0; p < count; p++){
+           sum1 += pow(((people[p].a1) - me), 2.0);
        }
-       else{
-          median = people[(count/2)].a1;
-      }
-      printf ("\nMedian of the array a1 is: %f", median);
-    */
+
+    double count1 = 1.0;
+    double count2 = count - count1;
+
+     variance = sqrt ((double) sum1 / (double) count2);
+       printf("\nVariance would it be: %.2f\n", variance);
+
+        //Median
+      /*float median;
+         if (count%2 == 0){
+            median = (people[(count/2)-1].a1+people[(count/2)]).a1/2.0;
+         }
+         else{
+            median = people[(count/2)].a1;
+        }
+        printf ("\nMedian of the array a1 is: %f", median);
+      */
 
     //Write the results in a file
 
@@ -195,7 +198,7 @@ int main(){
 
 
     fclose(file);
-    free(people);
+    //free(people);
 
     return 0;
 }
