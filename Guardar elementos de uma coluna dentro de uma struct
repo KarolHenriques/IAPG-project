@@ -27,7 +27,7 @@ char* getfield(char* line, int num)
 }
 
 int main(){
-    FILE* file = fopen("/home/karol/Downloads/ExampleCSV.csv", "r");
+    FILE* file = fopen("FILEPATH", "r");
     char line[LINE_SIZE];
 
     Person* people;
@@ -108,37 +108,94 @@ int main(){
     }
 
     //Sum all the elements inside the a1 array
-    int j;
-    int sum;
+    int j = 0;
+    int sum = 0;
     for (j = 0; j < count; ++j){
         //The number of elements inside the array will be equal the number of lines - the title of the table
 
         sum += people[j].a1;
     }
-    printf("\nThe sum of the elements inside the array a1 would it be: %d?\n", sum);
+    printf("\nThe sum of the elements inside the array a1 would be: %d?\n", sum);
 
     //Do the arithmetic mean of the elements from the array a1
 
-    float me;
+    float me = 0;
 
-    me = (float) sum/(float) count;
+    me = (float) sum/ count;
 
-    printf("\nThe arithmetic mean would it be: %f?\n",me);
+    printf("\nThe arithmetic mean would be: %f?\n",me);
+
+    //
+
+    //Find the greater value inside the a1 array
+   int largest = people[0].a1;
+   int position = 0;
+   int loop;
+
+   for (loop = 0; loop < count; loop++){
+       if (people[loop].a1 > largest){
+           largest = people[loop].a1 ;
+           position = loop;
+       }
+   }
+   printf("\nThe largest elements in the array a1 is: %d", largest);
+   printf("\nIndex position of the Largest element = %d \n", position);
+    //printf("The largest element is: %f ", people[33].a1 );
+
+
+    //Find the lowest value inside the array a1
+
+    int position1 = 0;
+    int lowest = people[0].a1;
+    int loo;
+
+    for (loo = 0; loo < count; loo++){
+        if (people[loo].a1 < lowest){
+            lowest = people[loo].a1;
+            position1 = loo;
+        }
+    }
+    printf("\nThe lowest elements in the array a1 is: %d", lowest);
+    printf("\nIndex position of the lowest element = %d", position1);
 
 
     //Variance
-int sum1;
-float variance;
-    for (int p = 0; p < count; p++)
-    {
-        sum1 = sum1 + pow(((people[p].a1) - me), 2);
-    }
-variance = sum1 / (float) count;
-    printf("\nVariance would it be: %.2f\n", variance);
+    /*int sum1;
+    float variance;
+      for (int p = 0; p < count; p++)
+      {
+          sum1 = sum1 + pow(((people[p].a1) - me), 2);
+      }
+    variance = sum1 / (float) count;
+      printf("\nVariance would it be: %.2f\n", variance);
+
+       //Median
+    float median;
+       if (count%2 == 0){
+          median = (people[(count/2)-1].a1+people[(count/2)]).a1/2.0;
+       }
+       else{
+          median = people[(count/2)].a1;
+      }
+      printf ("\nMedian of the array a1 is: %f", median);
+    */
+
+    //Write the results in a file
+
+
+
+
+
+
+
+
+
+
+
 
 
     fclose(file);
-    //free(people);
+    free(people);
 
     return 0;
 }
