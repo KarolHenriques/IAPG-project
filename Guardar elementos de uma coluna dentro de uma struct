@@ -26,8 +26,12 @@ char* getfield(char* line, int num)
     return NULL;
 }
 
+float Find_median(double array[] , int n);
+int Find_1Quartile(double array[] , int n);
+int Find_3Quartile(double array[] , int n);
+
 int main(){
-    FILE* file = fopen("FILEPATH", "r");
+    FILE* file = fopen("1.csv", "r");
     char line[LINE_SIZE];
 
     Person* people;
@@ -115,7 +119,7 @@ int main(){
 
         sum += people[j].a1;
     }
-    printf("\nThe sum of the elements inside the array a1 would be: %d?\n", sum);
+    printf("\nThe sum of the elements in a1 is: %d\n", sum);
 
     //Do the arithmetic mean of the elements from the array a1
 
@@ -123,7 +127,7 @@ int main(){
 
     me = (float) sum/ count;
 
-    printf("\nThe arithmetic average would be: %f?\n",me);
+    printf("\nThe arithmetic average in a1 is %f\n",me);
 
     //
 
@@ -139,8 +143,8 @@ int main(){
        }
    }
    printf("\nThe greater elements in the array a1 is: %d", largest);
-   printf("\nIndex position of the greater element = %d \n", position);
-    //printf("The largest element is: %f ", people[33].a1 );
+   printf("\nIndex position of the greater element in a1 = %d \n", position);
+    //printf("The largest element in a1 is: %f ", people[33].a1 );
 
 
     //Find the lowest value inside the array a1
@@ -155,8 +159,8 @@ int main(){
             position1 = loo;
         }
     }
-    printf("\nThe lowest elements in the array a1 is: %d\n", lowest);
-    printf("\nIndex position of the lowest element = %d\n", position1);
+    printf("\nThe lowest elements in a1 is: %d", lowest);
+    printf("\nIndex position of the lowest element in a1 = %d\n", position1);
 
 
     //Variance
@@ -170,30 +174,28 @@ int main(){
     double count2 = count - count1;
 
      variance = sqrt ((double) sum1 / (double) count2);
-       printf("\nVariance would it be: %.2f\n", variance);
+       printf("\nVariance in a1 would it be: %.2f?\n", variance);
 
         //Median
-      /*float median;
-         if (count%2 == 0){
-            median = (people[(count/2)-1].a1+people[(count/2)]).a1/2.0;
-         }
-         else{
-            median = people[(count/2)].a1;
-        }
-        printf ("\nMedian of the array a1 is: %f", median);
-      */
 
-    //Write the results in a file
+    float median = 0;
+
+      median = Find_median(&people->a1, count);
+
+        printf("\n\nThe median in a1 is: %.2f\n", median);
 
 
+      //1º Quartile
 
+    int q1 = Find_1Quartile(&people->a1, count);;
 
+    printf ("Q1 is: %.2f\n", people[q1].a1);
 
+      //3º Quartile
 
+    int q3 = Find_1Quartile(&people->a1, count);;
 
-
-
-
+    printf ("Q3 is: %.2f ", people[q3].a1);
 
 
 
@@ -203,3 +205,93 @@ int main(){
     return 0;
 }
 
+
+
+
+float Find_median(double array[] , int n){
+    float median = 0;
+    
+//Sort the elements of the array in ascending order:
+
+int i = 0;
+int j = 0;
+int temp = 0;
+
+for (i = 0; i < n; i++){
+  for (j = i+1; j < n; j++) { 
+       if(array[i] > array[j]) {    
+               temp = array[i];    
+               array[i] = array[j];    
+               array[j] = temp;
+    }     
+  }     
+}       
+
+    // if number of elements are even
+    if(n%2 == 0)
+        median = (array[(n-1)/2] + array[n/2])/2.0;
+    // if number of elements are odd
+    else
+        median = array[n/2];
+    
+    return median;
+}
+
+int Find_1Quartile(double array[] , int n) {
+    int quartile = 0;
+//Sort the elements of the array in ascending order:
+
+int i = 0;
+int j = 0;
+int temp = 0;
+
+for (i = 0; i < n; i++){
+  for (j = i+1; j < n; j++) { 
+       if(array[i] > array[j]) {    
+               temp = array[i];    
+               array[i] = array[j];    
+               array[j] = temp;
+    }     
+  }     
+}     
+
+quartile = n / 4;
+
+//Fazer teste para quando for preciso arredondar o número para i inteiro superior
+
+printf ("\nThe position of the Q1 is: person[%d].a1\n", quartile);
+
+return quartile;
+
+}
+
+int Find_3Quartile(double array[] , int n) {
+    int quartile_3 = 0;
+//Sort the elements of the array in ascending order:
+
+int i = 0;
+int j = 0;
+int temp = 0;
+
+for (i = 0; i < n; i++){
+  for (j = i+1; j < n; j++) { 
+       if(array[i] > array[j]) {    
+               temp = array[i];    
+               array[i] = array[j];    
+               array[j] = temp;
+    }     
+  }     
+}     
+
+quartile_3 = (n * 3) / 4;
+
+//Fazer teste para quando for preciso arredondar o número para i inteiro superior
+
+printf ("\nThe position of the Q3 is: person[%d].a1\n", quartile_3);
+
+printf("%d ", quartile_3);
+
+
+return quartile_3;
+
+}
