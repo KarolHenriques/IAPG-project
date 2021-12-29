@@ -1,0 +1,13 @@
+void how_soon_is_now (){
+    time_t rawtime;
+    struct tm * timeinfo;
+
+    time ( &rawtime );
+    timeinfo = localtime ( &rawtime );
+    printf ( "%s", asctime (timeinfo) );
+
+}
+
+int main (){
+    how_soon_is_now ();
+}
