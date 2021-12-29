@@ -193,7 +193,7 @@ int main(){
 
       //3º Quartile
 
-    int q3 = Find_1Quartile(&people->a1, count);;
+    int q3 = Find_3Quartile(&people->a1, count);;
 
     printf ("Q3 is: %.2f ", people[q3].a1);
 
