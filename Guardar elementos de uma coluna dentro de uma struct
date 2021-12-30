@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h>
+#include <time.h>
 
 const int LINE_SIZE = 1024;
 
@@ -16,6 +17,17 @@ typedef struct Person {
 
 } Person;
 
+typedef struct dados {
+  double sum1;
+  double me1 [10];
+  double largest1 [10];
+  double lowest1 [10];
+  double variance1 [10];
+  double median1 [10];
+  double q1_1 [10];
+  double q3_1 [10];
+} dados;
+
 char* getfield(char* line, int num)
 {
     char* tok;
@@ -26,12 +38,14 @@ char* getfield(char* line, int num)
     return NULL;
 }
 
+//double Sum_Elements (double array[] , int n);
 float Find_median(double array[] , int n);
 int Find_1Quartile(double array[] , int n);
 int Find_3Quartile(double array[] , int n);
+void how_soon_is_now ();
 
 int main(){
-    FILE* file = fopen("1.csv", "r");
+    FILE* file = fopen("2.CSV", "r");
     char line[LINE_SIZE];
 
     Person* people;
@@ -55,7 +69,7 @@ int main(){
         if (ch == '\n')
             break;
     }
-    printf("Number of columns: %d \n", column_Number + 1); //Plus one because the number of ; is -1 number of columns
+    printf("Number of columns: %d \n\n", column_Number + 1); //Plus one because the number of ; is -1 number of columns
 
     //
 
@@ -112,27 +126,46 @@ int main(){
     }
 
     //Sum all the elements inside the a1 array
+    
     int j = 0;
-    int sum = 0;
+    double sum = 0;
     for (j = 0; j < count; ++j){
         //The number of elements inside the array will be equal the number of lines - the title of the table
 
         sum += people[j].a1;
     }
-    printf("\nThe sum of the elements in a1 is: %d\n", sum);
+    printf("\nThe sum of the elements in a1 is: %.2f\n", sum);
 
-    //Do the arithmetic mean of the elements from the array a1
+
+    //sum = Sum_Elements(&people->a1, count);
+
+    //for (int k = 0; k < count; k++){
+    //printf("\n%.2f\n", people[k].a1);
+//}
+
+    //          
+   
+   struct dados s1 = {.sum1 = sum};
+
+    printf("\nIn dados struct: %.2f\n", s1.sum1);
+
+   // printf("\nThe sum of the elements in a1 is: %.2f\n", sum);
+
+    //Do the arithmetic average of the elements from the array a1
 
     float me = 0;
 
     me = (float) sum/ count;
 
-    printf("\nThe arithmetic average in a1 is %f\n",me);
+    printf("\nThe arithmetic average in a1 is %.4f\n",me);
+
+    struct dados s4 = {.me1 = me};
+    printf("\nIn dados struct: %.2f\n", s4.me1);
 
     //
 
     //Find the greater value inside the a1 array
-   int largest = people[0].a1;
+   double largest = people[0].a1;
    int position = 0;
    int loop;
 
@@ -142,15 +175,16 @@ int main(){
            position = loop;
        }
    }
-   printf("\nThe greater elements in the array a1 is: %d", largest);
+   printf("\nThe greater elements in the array a1 is: %.2f", largest);
    printf("\nIndex position of the greater element in a1 = %d \n", position);
-    //printf("The largest element in a1 is: %f ", people[33].a1 );
 
+    struct dados s2 = {.largest1 = largest};
+    printf("\nIn dados struct: %.2f\n", s2.largest1);
 
-    //Find the lowest value inside the array a1
+      //Find the lowest value inside the array a1
 
     int position1 = 0;
-    int lowest = people[0].a1;
+    double lowest = people[0].a1;
     int loo;
 
     for (loo = 0; loo < count; loo++){
@@ -159,13 +193,15 @@ int main(){
             position1 = loo;
         }
     }
-    printf("\nThe lowest elements in a1 is: %d", lowest);
+    printf("\nThe lowest elements in a1 is: %.2f", lowest);
     printf("\nIndex position of the lowest element in a1 = %d\n", position1);
 
+    struct dados s3 = {.lowest1 = lowest};
+    printf("\nIn dados struct: %.2f\n", s3.lowest1);
 
-    //Variance
-     int sum1 = 0;
-     float variance = 0;
+        //Variance
+     double sum1 = 0;
+     double variance = 0;
        for (int p = 0; p < count; p++){
            sum1 += pow(((people[p].a1) - me), 2.0);
        }
@@ -176,27 +212,64 @@ int main(){
      variance = sqrt ((double) sum1 / (double) count2);
        printf("\nVariance in a1 would it be: %.2f?\n", variance);
 
+      struct dados s5 = {.variance1 = variance};
+    printf("\nIn dados struct: %.2f\n", s5.variance1);
+
         //Median
 
     float median = 0;
 
       median = Find_median(&people->a1, count);
 
-        printf("\n\nThe median in a1 is: %.2f\n", median);
+        printf("\nThe median in a1 is: %.2f\n", median);
 
+    struct dados s6 = {.me1 = me};
+    printf("\nIn dados struct: %.2f\n", s6.me1);
 
       //1º Quartile
 
     int q1 = Find_1Quartile(&people->a1, count);;
 
-    printf ("Q1 is: %.2f\n", people[q1].a1);
+    printf ("Q1 in a1 is: %.2f\n", people[q1].a1);
+
+    struct dados s7 = {.q1_1 = people[q1].a1};
+    printf("\nIn dados struct: %.2f\n", s7.q1_1);
 
       //3º Quartile
 
-    int q3 = Find_3Quartile(&people->a1, count);;
+    int q3 = Find_3Quartile(&people->a1, count);
 
-    printf ("Q3 is: %.2f ", people[q3].a1);
+    printf ("Q3 in a1 is: %.2f\n", people[q3].a1);
 
+    struct dados s8 = {.q3_1 = people[q3].a1};
+    printf("\nIn dados struct: %.2f\n", s8.q3_1);
+
+      //Time
+
+      
+    //how_soon_is_now ();
+
+      //Send the results to a file
+
+      /*FILE *outfile;
+
+      outfile = fopen ("write.txt", "w+");
+
+      if (outfile == NULL){
+        fprintf(stderr, "\nError\n");
+        exit (1);
+      }
+
+      //fwrite (&s3, sizeof(struct dados), 1, outfile);
+      //fprintf (outfile, "Test, cacete %d", count);
+      fputs ()
+
+      if(fwrite != 0)
+        printf("contents to file written successfully!\n");
+      else
+        printf("Error writing file !\n");
+
+    fclose (outfile);*/
 
 
     fclose(file);
@@ -206,6 +279,21 @@ int main(){
 }
 
 
+
+/*double Sum_Elements(double array[], int n){
+    int j = 0;
+    double sumF = 0; 
+    for (j = 0; j < n; ++j){
+        //The number of elements inside the array will be equal the number of lines - the title of the table
+        sumF += array[j];
+    }
+
+    for (int k = 0; k < n; k++){
+      printf("\nThe elements received by the function sum were: %.2f\n", array[k]);
+    }
+//printf("\n%.2f\n", sumF);
+  return sumF;
+}*/
 
 
 float Find_median(double array[] , int n){
@@ -229,7 +317,7 @@ for (i = 0; i < n; i++){
 
     // if number of elements are even
     if(n%2 == 0)
-        median = (array[(n-1)/2] + array[n/2])/2.0;
+        median = (array[(n/2)-1] + array[n/2])/2.0;
     // if number of elements are odd
     else
         median = array[n/2];
@@ -239,6 +327,7 @@ for (i = 0; i < n; i++){
 
 int Find_1Quartile(double array[] , int n) {
     int quartile = 0;
+
 //Sort the elements of the array in ascending order:
 
 int i = 0;
@@ -289,9 +378,18 @@ quartile_3 = (n * 3) / 4;
 
 printf ("\nThe position of the Q3 is: person[%d].a1\n", quartile_3);
 
-printf("%d ", quartile_3);
-
 
 return quartile_3;
+
+}
+
+void how_soon_is_now () {
+
+ time_t rawtime;
+    struct tm * timeinfo;
+
+    time (&rawtime);
+    timeinfo = localtime ( &rawtime );
+    printf ( "%s", asctime (timeinfo));
 
 }
