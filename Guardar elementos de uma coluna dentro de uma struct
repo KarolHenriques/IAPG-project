@@ -317,7 +317,7 @@ for (i = 0; i < n; i++){
 
     // if number of elements are even
     if(n%2 == 0)
-        median = (array[(n/2)-1] + array[n/2])/2.0;
+        median = (array[(n/2)] + array[(n/2)+1])/2.0; 
     // if number of elements are odd
     else
         median = array[n/2];
