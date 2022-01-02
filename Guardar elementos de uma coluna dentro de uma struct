@@ -19,14 +19,15 @@ typedef struct Person {
 
 typedef struct dados {
   double sum1;
-  double me1 [10];
-  double largest1 [10];
-  double lowest1 [10];
-  double variance1 [10];
-  double median1 [10];
-  double q1_1 [10];
-  double q3_1 [10];
+  double me1;
+  double largest1;
+  double lowest1;
+  double variance1;
+  double median1;
+  double q1_1;
+  double q3_1;
 } dados;
+
 
 char* getfield(char* line, int num)
 {
