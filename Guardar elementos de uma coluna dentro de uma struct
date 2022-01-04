@@ -146,7 +146,7 @@ int main(){
 
     //          
    
-   struct dados s1 = {.sum1 = sum};
+   dados s1 = {.sum1 = sum};
 
     printf("\nIn dados struct: %.2f\n", s1.sum1);
 
@@ -160,7 +160,7 @@ int main(){
 
     printf("\nThe arithmetic average in a1 is %.4f\n",me);
 
-    struct dados s4 = {.me1 = me};
+    dados s4 = {.me1 = me};
     printf("\nIn dados struct: %.2f\n", s4.me1);
 
     //
@@ -179,7 +179,7 @@ int main(){
    printf("\nThe greater elements in the array a1 is: %.2f", largest);
    printf("\nIndex position of the greater element in a1 = %d \n", position);
 
-    struct dados s2 = {.largest1 = largest};
+    dados s2 = {.largest1 = largest};
     printf("\nIn dados struct: %.2f\n", s2.largest1);
 
       //Find the lowest value inside the array a1
@@ -197,7 +197,7 @@ int main(){
     printf("\nThe lowest elements in a1 is: %.2f", lowest);
     printf("\nIndex position of the lowest element in a1 = %d\n", position1);
 
-    struct dados s3 = {.lowest1 = lowest};
+    dados s3 = {.lowest1 = lowest};
     printf("\nIn dados struct: %.2f\n", s3.lowest1);
 
         //Variance
@@ -213,7 +213,7 @@ int main(){
      variance = sqrt ((double) sum1 / (double) count2);
        printf("\nVariance in a1 would it be: %.2f?\n", variance);
 
-      struct dados s5 = {.variance1 = variance};
+      dados s5 = {.variance1 = variance};
     printf("\nIn dados struct: %.2f\n", s5.variance1);
 
         //Median
@@ -224,8 +224,8 @@ int main(){
 
         printf("\nThe median in a1 is: %.2f\n", median);
 
-    struct dados s6 = {.me1 = me};
-    printf("\nIn dados struct: %.2f\n", s6.me1);
+    dados s6 = {.median1 = median};
+    printf("\nIn dados struct: %.2f\n", s6.median1);
 
       //1º Quartile
 
@@ -233,7 +233,7 @@ int main(){
 
     printf ("Q1 in a1 is: %.2f\n", people[q1].a1);
 
-    struct dados s7 = {.q1_1 = people[q1].a1};
+    dados s7 = {.q1_1 = people[q1].a1};
     printf("\nIn dados struct: %.2f\n", s7.q1_1);
 
       //3º Quartile
@@ -242,7 +242,7 @@ int main(){
 
     printf ("Q3 in a1 is: %.2f\n", people[q3].a1);
 
-    struct dados s8 = {.q3_1 = people[q3].a1};
+    dados s8 = {.q3_1 = people[q3].a1};
     printf("\nIn dados struct: %.2f\n", s8.q3_1);
 
       //Time
@@ -392,5 +392,4 @@ void how_soon_is_now () {
     time (&rawtime);
     timeinfo = localtime ( &rawtime );
     printf ( "%s", asctime (timeinfo));
-
 }
