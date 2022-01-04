@@ -14,10 +14,14 @@ typedef struct Person {
     double weight;
     double a1;
     double a5;
+    double a7;
 
 } Person;
 
+
 typedef struct dados {
+  char filename[50];
+  char colname[50];
   double sum1;
   double me1;
   double largest1;
@@ -26,6 +30,7 @@ typedef struct dados {
   double median1;
   double q1_1;
   double q3_1;
+
 } dados;
 
 
@@ -39,7 +44,7 @@ char* getfield(char* line, int num)
     return NULL;
 }
 
-//double Sum_Elements (double array[] , int n);
+double Sum_Elements (double array[] , int n);
 float Find_median(double array[] , int n);
 int Find_1Quartile(double array[] , int n);
 int Find_3Quartile(double array[] , int n);
@@ -72,6 +77,8 @@ int main(){
     }
     printf("Number of columns: %d \n\n", column_Number + 1); //Plus one because the number of ; is -1 number of columns
 
+    int column_allocation =  column_Number + 1;
+
     //
 
     while (fgets(line, LINE_SIZE, file)){count++;} // counts the number of lines in file
@@ -95,14 +102,16 @@ int main(){
     fgets(line, LINE_SIZE, file); // reads first line (column names) and do nothing
 
     count = 0; // reset count to use it as array index
+
+
     while (fgets(line, LINE_SIZE, file))
     {
         char temp[LINE_SIZE];
         // Get every column of row as char*
-        char* age = getfield(strcpy(temp, line), 1);
-        char* ga_ctg = getfield(strcpy(temp, line), 2);
+        char* age = getfield(strcpy(temp, line),1);
+        char* ga_ctg = getfield(strcpy(temp, line),2);
         char* ga_b = getfield(strcpy(temp, line), 3);
-        char* sex = getfield(strcpy(temp, line), 4);
+        char* sex = getfield(strcpy(temp, line),4);
         char* weight = getfield(strcpy(temp, line), 5);
         char* a1 = getfield(strcpy(temp, line), 6);
         char* a5 = getfield(strcpy(temp, line), 7);
@@ -114,6 +123,7 @@ int main(){
         people[count].weight = atof(weight);
         people[count].a1 = atof(a1);
         people[count].a5 = atof(a5);
+        
         // -------------------------------------------
 
         count++;
@@ -252,34 +262,35 @@ int main(){
 
       //Send the results to a file
 
-      /*FILE *outfile;
+      FILE *outfile;
 
-      outfile = fopen ("write.txt", "w+");
-
-      if (outfile == NULL){
+    outfile = fopen ("write.txt", "a+");
+    
+    if (outfile == NULL){
         fprintf(stderr, "\nError\n");
         exit (1);
-      }
+    }
 
-      //fwrite (&s3, sizeof(struct dados), 1, outfile);
-      //fprintf (outfile, "Test, cacete %d", count);
-      fputs ()
+    fprintf (outfile,"\n%f", s1.sum1);
+    fprintf (outfile,"\n%f", s2.largest1);
+    fprintf (outfile,"\n%f", s3.lowest1);
+    fprintf (outfile,"\n%f", s5.variance1);
+    fprintf (outfile,"\n%f", s4.median1);
+    fprintf (outfile,"\n%f", s6.me1);
 
       if(fwrite != 0)
         printf("contents to file written successfully!\n");
       else
         printf("Error writing file !\n");
 
-    fclose (outfile);*/
+    fclose (outfile);
 
 
     fclose(file);
-    //free(people);
+    free(people);
 
     return 0;
 }
-
-
 
 /*double Sum_Elements(double array[], int n){
     int j = 0;
